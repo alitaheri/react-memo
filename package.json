@@ -1,0 +1,29 @@
+{
+  "name": "react-memo",
+  "version": "0.0.1",
+  "description": "Higher order component to memoize derived data.",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -w",
+    "prepublish": "tsc -d",
+    "pretest": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alitaheri/react-memo.git"
+  },
+  "keywords": [
+    "memoize",
+    "react"
+  ],
+  "author": "Ali Taheri Moghaddar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alitaheri/react-memo/issues"
+  },
+  "homepage": "https://github.com/alitaheri/react-memo#readme",
+  "devDependencies": {
+    "typescript": "^1.7.5"
+  }
+}

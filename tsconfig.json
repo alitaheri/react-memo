@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "target": "es3",
+    "outDir": "lib",
+    "module": "commonjs"
+  },
+  "files": [
+    "src/index"
+  ]
+}
