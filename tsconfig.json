@@ -6,6 +6,6 @@
     "module": "commonjs"
   },
   "files": [
-    "src/index"
+    "src/index.ts"
   ]
 }
