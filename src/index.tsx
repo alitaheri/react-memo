@@ -13,7 +13,7 @@ export function createSelector(alias, selectors, resolver) {
 
 export function createWrapper<P, C>(selectors: __Memo.SelectorDescriptor<P, C>[], options?: __Memo.Options): __Memo.Wrapper {
 
-  return function wrapper<PTarget>(Component: React.ComponentClass<PTarget>): React.ComponentClass<PTarget> {
+  return function wrapper<PTarget>(Component: React.ComponentClass<any>): React.ComponentClass<PTarget> {
 
     class Memo extends React.Component<P, any> {
       public static contextTypes = options && options.contextTypes;
@@ -34,7 +34,7 @@ export function createWrapper<P, C>(selectors: __Memo.SelectorDescriptor<P, C>[]
         }
         return selectors.some(
           selector => selector.selectors.some(
-            valueSelector => valueSelector(this.props, <C>this.context) !== valueSelector(nextProps, nextContext)
+            valueSelector => valueSelector(this.props, this.context as C) !== valueSelector(nextProps, nextContext)
           )
         );
       }
@@ -48,7 +48,7 @@ export function createWrapper<P, C>(selectors: __Memo.SelectorDescriptor<P, C>[]
 
           const args = selector.selectors.map(valueSelector => {
 
-            const oldValue = valueSelector(this.props, <C>this.context);
+            const oldValue = valueSelector(this.props, this.context as C);
             const newValue = valueSelector(nextProps, nextContext);
 
             if (oldValue !== newValue) {
@@ -72,10 +72,10 @@ export function createWrapper<P, C>(selectors: __Memo.SelectorDescriptor<P, C>[]
       }
 
       render() {
-        return React.createElement(Component, this.state);
+        return <Component {...this.props} {...this.state} />;
       }
     }
 
-    return <any>Memo;
+    return Memo as any;
   }
 }
