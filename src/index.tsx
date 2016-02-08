@@ -29,7 +29,7 @@ export function createWrapper<P, C>(selectors: __Memo.SelectorDescriptor<P, C>[]
       }
 
       shouldComponentUpdate(nextProps: P, nextState: any, nextContext: C): boolean {
-        if (options && options.pure === false) {
+        if (!options || options.pure === false) {
           return true;
         }
         return selectors.some(
