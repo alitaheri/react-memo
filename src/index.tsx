@@ -17,7 +17,7 @@ export function createWrapper<P, C>(selectors: __Memo.SelectorDescriptor<P, C>[]
     selectors = [selectors as any];
   }
 
-  if (typeof selectors !== 'array') {
+  if (Array.isArray(selectors)) {
     throw new Error('Invalid type of selectors provided.');
   }
 
