@@ -1,7 +1,6 @@
 declare namespace __Memo {
 
   export interface Options {
-    pure?: boolean;
     propTypes?: { [name: string]: __React.Validator<any>; };
     contextTypes?: { [name: string]: __React.Validator<any>; };
   }

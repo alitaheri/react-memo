@@ -28,17 +28,6 @@ export function createWrapper<P, C>(selectors: __Memo.SelectorDescriptor<P, C>[]
         }, {});
       }
 
-      shouldComponentUpdate(nextProps: P, nextState: any, nextContext: C): boolean {
-        if (!options || options.pure === false) {
-          return true;
-        }
-        return selectors.some(
-          selector => selector.selectors.some(
-            valueSelector => valueSelector(this.props, this.context as C) !== valueSelector(nextProps, nextContext)
-          )
-        );
-      }
-
       componentWillReceiveProps(nextProps: P, nextContext: C): void {
         let stateModified = false;
 
