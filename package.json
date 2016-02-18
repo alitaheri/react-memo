@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "build": "tsc -w",
-    "prepublish": "tsc",
+    "prepublish": "tsc --sourceRoot src --outDir lib",
     "pretest": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
