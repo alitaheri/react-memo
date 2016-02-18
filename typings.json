@@ -1,6 +1,8 @@
 {
-  "dependencies": {},
-  "devDependencies": {},
+  "name": "typings",
+  "main": "typings.d.ts",
+  "author": "Ali Taheri Moghaddar <ali.taheri.m@gmail.com>",
+  "description": "Higher order component to memoize derived data",
   "ambientDevDependencies": {
     "react": "github:DefinitelyTyped/DefinitelyTyped/react/react.d.ts#83b88a031cc8f2006fd361bf0a0b548c3bcc8259"
   }
