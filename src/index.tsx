@@ -13,6 +13,14 @@ export function createSelector(alias, selectors, resolver) {
 
 export function createWrapper<P, C>(selectors: __Memo.SelectorDescriptor<P, C>[], options?: __Memo.Options): __Memo.Wrapper {
 
+  if (typeof selectors === 'object') {
+    selectors = [selectors as any];
+  }
+
+  if (typeof selectors !== 'array') {
+    throw new Error('Invalid type of selectors provided.');
+  }
+
   return function wrapper<PTarget>(Component: React.ComponentClass<any>): React.ComponentClass<PTarget> {
 
     class Memo extends React.Component<P, any> {

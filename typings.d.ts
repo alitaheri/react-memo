@@ -29,7 +29,7 @@ declare namespace __Memo {
   export function createSelector<P, C, V1, TResult>(alias: string, selectors: [ValueSelector<P, C, V1>], resolver: (v1: V1) => TResult): SelectorDescriptor<P, C>;
   export function createSelector<P, C, TResult>(alias: string, selectors: ValueSelector<P, C, any>[], resolver: (...values: any[]) => TResult): SelectorDescriptor<P, C>;
 
-  export function createWrapper<P, C>(selectors: SelectorDescriptor<P, C>[], options?: Options): Wrapper;
+  export function createWrapper<P, C>(selectors: SelectorDescriptor<P, C>[] | SelectorDescriptor<P, C>, options?: Options): Wrapper;
 }
 
 declare module 'react-memo' {
