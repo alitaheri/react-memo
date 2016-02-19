@@ -5,7 +5,7 @@
     "module": "commonjs"
   },
   "exclude": [
-    "node_module",
+    "node_modules",
     "typings"
   ]
 }

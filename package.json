@@ -11,9 +11,9 @@
   ],
   "scripts": {
     "build": "tsc -w",
-    "prepublish": "tsc --sourceRoot src --outDir lib",
+    "prepublish": "tsc src/index.tsx --outDir lib --jsx react --module commonjs",
     "pretest": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -30,10 +30,14 @@
   },
   "homepage": "https://github.com/alitaheri/react-memo#readme",
   "peerDependencies": {
-    "react": "^0.4.0"
+    "react": ">=0.4.0"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
+    "jsdom": "^8.0.4",
     "mocha": "^2.4.5",
+    "react": "^0.14.7",
+    "react-addons-test-utils": "^0.14.7",
     "typescript": "^1.7.5"
   }
 }
