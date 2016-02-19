@@ -10,8 +10,8 @@
     "src"
   ],
   "scripts": {
-    "build": "tsc -w",
-    "prepublish": "tsc src/index.tsx --outDir lib --jsx react --module commonjs",
+    "build": "tsc src/index.tsx --outDir lib --jsx react --module commonjs",
+    "ci-test": "typings install && npm run test",
     "pretest": "tsc",
     "test": "mocha"
   },
@@ -38,6 +38,7 @@
     "mocha": "^2.4.5",
     "react": "^0.14.7",
     "react-addons-test-utils": "^0.14.7",
-    "typescript": "^1.7.5"
+    "typescript": "^1.7.5",
+    "typings": "^0.6.8"
   }
 }
