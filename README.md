@@ -99,18 +99,30 @@ function createSelector(
   selectors: Array<(props, context) => any>,
   resolver: (...values: any[]) => any
 ): Selector;
+
+// Provide single selector
+function createSelector(
+  alias: string,
+  selectors: (props, context) => any,
+  resolver: (value: any) => any
+): Selector;
+
+// Provide no selectors, resolver will be called only once
+// during the lifetime of the component.
+function createSelector(alias: string, resolver: () => any): Selector;
 ```
 
 - `alias`: The name of the prop that is to be passed down.
-- `selectors`: The array of value selectors that are used
-to select the arguments for the resolver. These are also used to judge
+- `selectors`: The value selector or an array of value selectors that are
+used to select the arguments for the resolver. These are also used to judge
 whether `resolver` should be called.
 - `resolver`: The place where the heavy calculations are done.
 
 ### createWrapper
 
 ```js
-createWrapper(selectors: Selector[] | Selector, options?: Options): Wrapper;
+createWrapper(selectors: Selector, options?: Options): Wrapper;
+createWrapper(selectors: Selector[], options?: Options): Wrapper;
 
 // Options: {propTypes, contextTypes};
 

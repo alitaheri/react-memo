@@ -32,6 +32,36 @@ class Context extends React.Component<any, any> {
 }
 
 describe('selection behavior', () => {
+  it('should not fail with zero selectors', () => {
+
+    const selector: any = createSelector('result', () => 1);
+
+    const wrapper = createWrapper(selector);
+
+    const WrappedTest = wrapper(Test);
+
+    const dom = TestUtils.renderIntoDocument(<WrappedTest val1={3} val2={1}/>);
+
+    const resultElement = TestUtils.findRenderedComponentWithType(dom, Test);
+    const result = parseInt(resultElement.props.result);
+    expect(result).to.be.equal(1);
+  });
+
+  it('should not fail with single selector', () => {
+
+    const selector: any = createSelector('result', (props) => props.val1, (val1, val2) => val1);
+
+    const wrapper = createWrapper(selector);
+
+    const WrappedTest = wrapper(Test);
+
+    const dom = TestUtils.renderIntoDocument(<WrappedTest val1={3} val2={1}/>);
+
+    const resultElement = TestUtils.findRenderedComponentWithType(dom, Test);
+    const result = parseInt(resultElement.props.result);
+    expect(result).to.be.equal(3);
+  });
+
   it('should calculate result correctly from props', () => {
 
     const selector: any = createSelector('result', [
@@ -147,5 +177,29 @@ describe('memoization behavior', () => {
     (dom as any).setVal1(3);
     (dom as any).setVal2(3);
     expect(calculated).to.be.equals(4);
+  });
+
+  it('should never recalculate when no selectors are provided', () => {
+
+    let calculated = 0;
+
+    const selector: any = createSelector('result', () => { calculated++; });
+
+    const wrapper = createWrapper(selector);
+
+    const WrappedTest = wrapper(Test);
+
+    const dom = TestUtils.renderIntoDocument(<Mutable val1={1} val2={1}><WrappedTest/></Mutable>);
+    expect(calculated).to.be.equals(1);
+
+    (dom as any).setVal1(2);
+    expect(calculated).to.be.equals(1);
+
+    (dom as any).setVal2(1);
+    expect(calculated).to.be.equals(1);
+
+    (dom as any).setVal1(3);
+    (dom as any).setVal2(3);
+    expect(calculated).to.be.equals(1);
   });
 });

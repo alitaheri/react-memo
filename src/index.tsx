@@ -3,15 +3,23 @@
 
 import * as React from 'react';
 
-export function createSelector(alias, selectors, resolver) {
+export function createSelector(alias, ...rest): __Memo.Selector<any, any> {
+  if (rest.length === 1) {
+    return {
+      alias,
+      valueSelectors: [],
+      resolver: rest[0],
+    };
+  }
+
   return {
     alias,
-    selectors,
-    resolver,
+    valueSelectors: Array.isArray(rest[0]) ? rest[0] : [rest[0]],
+    resolver: rest[1],
   };
 }
 
-export function createWrapper<P, C>(selectors: __Memo.SelectorDescriptor<P, C>[], options?: __Memo.Options): __Memo.Wrapper {
+export function createWrapper<P, C>(selectors: __Memo.Selector<P, C>[], options?: __Memo.Options): __Memo.Wrapper {
 
   if (!Array.isArray(selectors)) {
     selectors = [selectors as any];
@@ -26,7 +34,7 @@ export function createWrapper<P, C>(selectors: __Memo.SelectorDescriptor<P, C>[]
       constructor(props: P, context: C) {
         super(props, context);
         this.state = selectors.reduce((state, selector) => {
-          const args = selector.selectors.map(valueSelector => valueSelector(props, context));
+          const args = selector.valueSelectors.map(valueSelector => valueSelector(props, context));
           state[selector.alias] = selector.resolver(...args);
           return state;
         }, {});
@@ -39,7 +47,7 @@ export function createWrapper<P, C>(selectors: __Memo.SelectorDescriptor<P, C>[]
 
           let selectorModified = false;
 
-          const args = selector.selectors.map(valueSelector => {
+          const args = selector.valueSelectors.map(valueSelector => {
 
             const oldValue = valueSelector(this.props, this.context as C);
             const newValue = valueSelector(nextProps, nextContext);

@@ -1,5 +1,4 @@
 node_modules/
-lib/
 typings/
-src/*.js
-test/*.js
+**/*.js
+*.log
