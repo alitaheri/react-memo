@@ -9,8 +9,8 @@
   ],
   "scripts": {
     "build": "tsc src/index.tsx --outDir . --jsx react --module commonjs --removeComments",
-    "prepublish": "npm run build",
-    "ci-test": "typings install && npm run test",
+    "prepublish": "typings install && npm run build",
+    "ci-test": "npm run test",
     "pretest": "tsc",
     "test": "mocha"
   },
