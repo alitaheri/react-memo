@@ -2,16 +2,29 @@
 [![npm](https://badge.fury.io/js/react-memo.svg)](https://badge.fury.io/js/react-memo)
 [![Build Status](https://travis-ci.org/alitaheri/react-memo.svg?branch=master)](https://travis-ci.org/alitaheri/react-memo)
 
-React Memo is a Higher Order Component wraps the your data derivation logic.
+Heavily inspired by [Reselect](https://github.com/reactjs/reselect).
 
-To use this package you would need to be fairly familiar with
-[React](http://facebook.github.io/react/) itself. 
+React Memo is a Higher Order Component wraps the your data derivation logic.
 
 The main objective of this library was(is) to provide memoization logic for
 [Material-UI](https://github.com/callemall/material-ui)'s inline-styles. But it can
 also be used for any other class of calculations too. 
 
-Heavily inspired by [Reselect](https://github.com/reactjs/reselect).
+To use this package you would need to be fairly familiar with
+[React](http://facebook.github.io/react/) itself. 
+
+### TL;DR
+
+This is a simply a caching and cache invalidation library that works very well with react.
+
+1. Take data from prop and contex.
+2. Run value selectors and get needed values.
+3. Run resolver with the values if they are modified from the previous
+invocation. (resolver must be very cpu/memory intensive for this to have positive effect)
+4. Pass the results down as property.
+5. With each call to `componentWillReceiveProps` go to 1.
+
+## Installation
 
 You can install this package with the following command:
 
