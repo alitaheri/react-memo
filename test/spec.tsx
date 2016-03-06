@@ -49,7 +49,7 @@ describe('selection behavior', () => {
 
   it('should not fail with single selector', () => {
 
-    const selector: any = createSelector('result', (props) => props.val1, (val1, val2) => val1);
+    const selector: any = createSelector('result', (props: any) => props.val1, (val1) => val1);
 
     const wrapper = createWrapper(selector);
 
@@ -65,7 +65,7 @@ describe('selection behavior', () => {
   it('should calculate result correctly from props', () => {
 
     const selector: any = createSelector('result', [
-      (props) => props.val1,
+      (props: any) => props.val1,
       (props) => props.val2,
     ], (val1, val2) => val1 - val2);
 
@@ -83,7 +83,7 @@ describe('selection behavior', () => {
   it('should calculate result correctly from context', () => {
 
     const selector: any = createSelector('result', [
-      (props, context) => context.val1,
+      (props, context: any) => context.val1,
       (props, context) => context.val2,
     ], (val1, val2) => val1 - val2);
 
@@ -104,12 +104,12 @@ describe('selection behavior', () => {
   it('should calculate result correctly with mutliple value selectors', () => {
 
     const selector1: any = createSelector('result1', [
-      (props) => props.val1,
+      (props: any) => props.val1,
       (props) => props.val2,
     ], (val1, val2) => val1 - val2);
 
     const selector2: any = createSelector('result2', [
-      (props) => props.val1,
+      (props: any) => props.val1,
       (props) => props.val2,
     ], (val1, val2) => val1 / val2);
 
@@ -154,7 +154,7 @@ describe('memoization behavior', () => {
     let calculated = 0;
 
     const selector: any = createSelector('result', [
-      (props) => props.val1,
+      (props: any) => props.val1,
       (props) => props.val2,
     ], (val1, val2) => { calculated++; });
 

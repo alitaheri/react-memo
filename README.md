@@ -149,11 +149,7 @@ you **must** provide the `contextTypes` or React won't pass down the required co
 
 ## Typings
 
-The typescript type definitions are also available.
-
-```js
-/// <reference path="./node_modules/react-memo/typings.d.ts" />
-``` 
+The typescript type definitions are also available and are installed via npm.
 
 ## License
 This project is licensed under the [MIT license](https://github.com/alitaheri/react-memo/blob/master/LICENSE).

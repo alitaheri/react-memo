@@ -1,14 +1,14 @@
 {
   "name": "react-memo",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Higher order component to memoize derived data",
   "main": "index.js",
   "files": [
     "index.js",
-    "typings.d.ts"
+    "index.d.ts"
   ],
   "scripts": {
-    "build": "tsc src/index.tsx --outDir . --jsx react --module commonjs --removeComments",
+    "build": "tsc -d src/index.tsx --outDir . --jsx react --module commonjs --removeComments",
     "prepublish": "typings install && npm run build",
     "ci-test": "npm run test",
     "pretest": "tsc",
